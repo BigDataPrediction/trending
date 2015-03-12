@@ -108,6 +108,8 @@
 					<includePluginDependencies>false</includePluginDependencies>
 					<classpathScope>compile</classpathScope>
 					<mainClass>${storm.topology}</mainClass>
+					<arguments>
+					</arguments>
 				</configuration>
 			</plugin>
 		</plugins>

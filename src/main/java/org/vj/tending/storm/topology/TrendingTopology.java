@@ -37,11 +37,11 @@ public class TrendingTopology
     
             
     public static void main(String[] args) throws Exception {
-        if (args.length != 2) {
-            throw new IllegalArgumentException("Need two arguments: topology name and config file path");
-        }
-        String topologyName = args[0];
-        String configFilePath = args[1];
+//        if (args.length != 2) {
+//            throw new IllegalArgumentException("Need two arguments: topology name and config file path");
+//        }
+        String topologyName = "TrendingNow";
+        String configFilePath = "/home/vijay/trending/src/main/resources/trending.properties";
         Config conf = RealtimeUtil.buildStormConfig(configFilePath);
         // Set the spout to read from MongoDB collections
         MongoCappedCollectionSpout mongoSpout=new MongoCappedCollectionSpout(ConfigUtility.getString(conf, "mongo.input.url"), ConfigUtility.getString(conf, "mongo.collection.input"));
