@@ -7,8 +7,10 @@ package org.vj.trending.storm.tools;
  * @author Vijay
  *
  */
+import org.apache.commons.collections.buffer.CircularFifoBuffer;
+
 import backtype.storm.utils.Time;
-import org.apache.commons.collections.b
+
 /**
  * This class tracks the time-since-last-modify of a "thing" in a rolling fashion.
  * 
