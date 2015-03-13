@@ -72,6 +72,7 @@ public class MongoWriterBolt extends BaseRichBolt {
         // Get the db the user wants
         db = mongo.getDB(dbName == null ? uri.getDatabase() : dbName);
         collection=db.getCollection(this.collectionName);
+        LOG.info("############################### Document Count:" + collection.count());
     }
 
     @Override
@@ -79,7 +80,7 @@ public class MongoWriterBolt extends BaseRichBolt {
         boolean istick=TupleHelpers.isTickTuple(tuple);
 
         LOG.info("############################### MongoWriterBolt - I am here now");
-       getLogger().info("mongo tuple" + tuple);
+        LOG.info("###############################mongo tuple: " + tuple);
         if (!TupleHelpers.isTickTuple(tuple)) {
             String s=tuple.getSourceComponent();
             List v=tuple.getValues();
