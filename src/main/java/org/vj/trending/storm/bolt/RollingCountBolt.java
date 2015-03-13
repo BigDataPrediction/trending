@@ -95,6 +95,7 @@ public class RollingCountBolt extends BaseRichBolt {
             Integer c = counters.get(articleId) + 1;
             counters.put(articleId, c);
         }*/
+        LOG.info("############################### RollingCountBolt - I am here now");
         if (TupleHelpers.isTickTuple(tuple)) {
             LOG.info("Received tick tuple, triggering emit of current window counts");
             emitCurrentWindowCounts();
@@ -106,6 +107,7 @@ public class RollingCountBolt extends BaseRichBolt {
     }
 
     private void emitCurrentWindowCounts() {
+        LOG.info("############################### RollingCountBolt - I am here now");
         Map<Object, Long> counts = counter.getCountsThenAdvanceWindow();
         int actualWindowLengthInSeconds = lastModifiedTracker.secondsSinceOldestModification();
         lastModifiedTracker.markAsModified();

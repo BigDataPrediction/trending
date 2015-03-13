@@ -3,8 +3,9 @@
  */
 package org.vj.tending.storm.topology;
 
-import org.vj.trending.storm.bolt.ListExtractorBolt;
+import org.apache.log4j.Logger;
 import org.vj.trending.storm.bolt.IntermediateRankingsBolt;
+import org.vj.trending.storm.bolt.ListExtractorBolt;
 import org.vj.trending.storm.bolt.MongoWriterBolt;
 import org.vj.trending.storm.bolt.RollingCountBolt;
 import org.vj.trending.storm.bolt.TotalRankingsBolt;
@@ -34,12 +35,13 @@ public class TrendingTopology
     
     public static final String url = "mongodb://localhost:27017/cp";
     public static final String collectionName = "user";
-    
+    static Logger LOG = Logger.getLogger(TrendingTopology.class);
             
     public static void main(String[] args) throws Exception {
 //        if (args.length != 2) {
 //            throw new IllegalArgumentException("Need two arguments: topology name and config file path");
 //        }
+        LOG.info("############################### Topology Started ..........................");
         String topologyName = "TrendingNow";
         String configFilePath = "/home/vijay/trending/trending.properties";
         Config conf = RealtimeUtil.buildStormConfig(configFilePath);

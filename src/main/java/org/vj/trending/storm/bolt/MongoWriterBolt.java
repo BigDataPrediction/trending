@@ -78,6 +78,7 @@ public class MongoWriterBolt extends BaseRichBolt {
     public void execute(Tuple tuple) {
         boolean istick=TupleHelpers.isTickTuple(tuple);
 
+        LOG.info("############################### MongoWriterBolt - I am here now");
        getLogger().info("mongo tuple" + tuple);
         if (!TupleHelpers.isTickTuple(tuple)) {
             String s=tuple.getSourceComponent();
