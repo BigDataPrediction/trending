@@ -40,7 +40,7 @@ public final class IntermediateRankingsBolt extends AbstractRankerBolt {
 
     @Override
     void updateRankingsWithTuple(Tuple tuple) {
-        LOG.info("############################### IntermediateRankingsBolt - I am here now");
+        LOG.info("############################### IntermediateRankingsBolt - I am here now: " + tuple);
         Rankable rankable = RankableObjectWithFields.from(tuple);
         super.getRankings().updateWith(rankable);
     }

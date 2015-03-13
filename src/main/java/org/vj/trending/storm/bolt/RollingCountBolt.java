@@ -95,7 +95,7 @@ public class RollingCountBolt extends BaseRichBolt {
             Integer c = counters.get(articleId) + 1;
             counters.put(articleId, c);
         }*/
-        LOG.info("############################### RollingCountBolt - I am here now");
+        LOG.info("############################### RollingCountBolt - I am here now: " +  tuple);
         if (TupleHelpers.isTickTuple(tuple)) {
             LOG.info("Received tick tuple, triggering emit of current window counts");
             emitCurrentWindowCounts();

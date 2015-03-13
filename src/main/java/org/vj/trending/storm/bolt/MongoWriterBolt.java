@@ -97,6 +97,7 @@ public class MongoWriterBolt extends BaseRichBolt {
 
             }
             if (save) {
+                LOG.info("############################### Save: " + tuple);
             String docId="globalRanking";
             final BasicDBObject query = new BasicDBObject("_id", docId);
 

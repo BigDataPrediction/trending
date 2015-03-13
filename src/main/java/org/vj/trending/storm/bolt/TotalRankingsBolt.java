@@ -39,7 +39,7 @@ public final class TotalRankingsBolt extends AbstractRankerBolt {
 
     @Override
     void updateRankingsWithTuple(Tuple tuple) {
-        LOG.info("############################### TotalRankingsBolt - I am here now");
+        LOG.info("############################### TotalRankingsBolt - I am here now: " + tuple);
         Rankings rankingsToBeMerged = (Rankings) tuple.getValue(0);
         super.getRankings().updateWith(rankingsToBeMerged);
     }
