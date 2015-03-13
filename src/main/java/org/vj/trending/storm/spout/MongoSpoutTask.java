@@ -56,7 +56,7 @@ class MongoSpoutTask implements Callable<Boolean>, Runnable, Serializable {
       }
     } catch (UnknownHostException e) {
       // Log the error
-      LOG.error("Unknown host for Mongo DB", e);
+      LOG.info("Unknown host for Mongo DB", e);
       // Die fast
       throw new RuntimeException(e);
     }
@@ -93,6 +93,7 @@ class MongoSpoutTask implements Callable<Boolean>, Runnable, Serializable {
           Thread.sleep(500);
         }
       } catch (Exception e) {
+          LOG.info("Mongo Error: ", e);
         if (running.get()) throw new RuntimeException(e);
       }
     }
@@ -124,7 +125,7 @@ class MongoSpoutTask implements Callable<Boolean>, Runnable, Serializable {
     try {
       call();
     } catch (Exception e) {
-      LOG.error(e);
+      LOG.info("Mongo Error: ", e);
     }
   }
 }
