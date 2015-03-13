@@ -15,7 +15,10 @@ import backtype.storm.topology.base.BaseRichBolt;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
+import clojure.lang.IFn.LO;
+
 import com.mongodb.DBObject;
+
 import org.apache.log4j.Logger;
 import org.vj.trending.storm.tools.TupleHelpers;
 
@@ -28,7 +31,7 @@ import java.util.Map;
  * Time: 1:28 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ArticleExtractorBolt extends BaseRichBolt {
+public class ListExtractorBolt extends BaseRichBolt {
     /**
      * 
      */
@@ -50,6 +53,7 @@ public class ArticleExtractorBolt extends BaseRichBolt {
         }  else {
        DBObject object=(DBObject) tuple.getValueByField("document");
        String listId=(String)object.get("listID");
+       LOG.debug("###############################Now Processing List Id:" + listId);
        outputCollector.emit(tuple, new Values(listId));
         }
     }

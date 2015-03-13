@@ -3,7 +3,7 @@
  */
 package org.vj.tending.storm.topology;
 
-import org.vj.trending.storm.bolt.ArticleExtractorBolt;
+import org.vj.trending.storm.bolt.ListExtractorBolt;
 import org.vj.trending.storm.bolt.IntermediateRankingsBolt;
 import org.vj.trending.storm.bolt.MongoWriterBolt;
 import org.vj.trending.storm.bolt.RollingCountBolt;
@@ -23,11 +23,11 @@ import backtype.storm.tuple.Fields;
 public class TrendingTopology
 {
     public static final String spoutId = "eventReader";
-    public static final String articleExtractorId="articleIdReader";
+    public static final String listExtractorId="ListIdReader";
     public static final String counterId = "counter";
-    public static final String intermediateRankerId = "intermediateRanker";
-    public static final String totalRankerId = "finalRanker";
-    public static final String totalsavetomongoId="savetoMongoDBBolt";
+    public static final String intermediateRankerId = "IntermediateRanker";
+    public static final String totalRankerId = "FinalRanker";
+    public static final String totalsavetomongoId="TrendingInjester";
     public static final int TOP_N = 10;
     public static final int DEFAULT_RUNTIME_IN_SECONDS = 60;
     public static final int runtimeInSeconds = DEFAULT_RUNTIME_IN_SECONDS;
@@ -50,8 +50,8 @@ public class TrendingTopology
 
         builder.setSpout(spoutId, mongoSpout);
         
-        builder.setBolt(articleExtractorId,new ArticleExtractorBolt()).shuffleGrouping(spoutId);
-        builder.setBolt(counterId, new RollingCountBolt(runtimeInSeconds, 10), 2).fieldsGrouping(articleExtractorId, new Fields("listID"));
+        builder.setBolt(listExtractorId,new ListExtractorBolt()).shuffleGrouping(spoutId);
+        builder.setBolt(counterId, new RollingCountBolt(runtimeInSeconds, 10), 2).fieldsGrouping(listExtractorId, new Fields("listID"));
         builder.setBolt(intermediateRankerId, new IntermediateRankingsBolt(TOP_N), 2).fieldsGrouping(counterId,
                 new Fields("obj"));
         builder.setBolt(totalRankerId, new TotalRankingsBolt(TOP_N)).globalGrouping(intermediateRankerId);
