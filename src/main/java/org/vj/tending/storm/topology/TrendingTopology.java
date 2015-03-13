@@ -29,8 +29,8 @@ public class TrendingTopology
     public static final String intermediateRankerId = "IntermediateRanker";
     public static final String totalRankerId = "FinalRanker";
     public static final String totalsavetomongoId="TrendingInjester";
-    public static final int TOP_N = 10;
-    public static final int DEFAULT_RUNTIME_IN_SECONDS = 60;
+    public static final int TOP_N = 5;
+    public static final int DEFAULT_RUNTIME_IN_SECONDS = 3600;
     public static final int runtimeInSeconds = DEFAULT_RUNTIME_IN_SECONDS;
     
     public static final String url = "mongodb://localhost:27017/cp";
