@@ -56,7 +56,7 @@ public class ListExtractorBolt extends BaseRichBolt
         else
         {
             LOG.info("2.Tuple:" + tuple);
-            DBObject object = (DBObject) tuple.getValueByField("document");
+            DBObject object = (DBObject) tuple.getValue(0);
             String listId = (String) object.get("lid");
             LOG.info("###############################Now Processing List Id:" + listId);
             outputCollector.emit(tuple, new Values(listId));

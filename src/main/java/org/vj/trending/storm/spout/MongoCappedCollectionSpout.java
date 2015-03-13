@@ -33,7 +33,7 @@ public class MongoCappedCollectionSpout extends MongoSpoutBase implements Serial
     if (object != null) {
       // Map the object to a tuple
       List<Object> tuples = this.mapper.map(object);
-      LOG.info("############################### Got object in the MongoCappedCollectionSpout");
+      LOG.info("############################### Got object in the MongoCappedCollectionSpout" + object);
 
       // Fetch the object Id
 
