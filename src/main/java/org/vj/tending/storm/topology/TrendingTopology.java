@@ -53,7 +53,7 @@ public class TrendingTopology
         builder.setSpout(spoutId, mongoSpout);
         
         builder.setBolt(listExtractorId,new ListExtractorBolt()).shuffleGrouping(spoutId);
-        builder.setBolt(counterId, new RollingCountBolt(runtimeInSeconds, 10), 2).fieldsGrouping(listExtractorId, new Fields("listID"));
+        builder.setBolt(counterId, new RollingCountBolt(runtimeInSeconds, 10), 2).fieldsGrouping(listExtractorId, new Fields("lid"));
         builder.setBolt(intermediateRankerId, new IntermediateRankingsBolt(TOP_N), 2).fieldsGrouping(counterId,
                 new Fields("obj"));
         builder.setBolt(totalRankerId, new TotalRankingsBolt(TOP_N)).globalGrouping(intermediateRankerId);
