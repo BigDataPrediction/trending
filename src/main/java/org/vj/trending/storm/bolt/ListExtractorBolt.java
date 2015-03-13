@@ -65,7 +65,7 @@ public class ListExtractorBolt extends BaseRichBolt
             {
                 LOG.info("###############################Error:" + e.getMessage(), e);
             }
-            String listId = (String) object.get("lid");
+            String listId = object.get("lid").toString();
             LOG.info("###############################Now Processing List Id:" + listId);
             outputCollector.emit(tuple, new Values(listId));
         }
