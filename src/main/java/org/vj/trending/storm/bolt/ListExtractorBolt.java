@@ -46,10 +46,11 @@ public class ListExtractorBolt extends BaseRichBolt {
 
     @Override
     public void execute(Tuple tuple) {
-       LOG.debug(tuple);
+       LOG.info("1.Tuple:" + tuple);
         if (TupleHelpers.isTickTuple(tuple)) {
+            LOG.info("2.Inside the Tick");
             outputCollector.emit(new Values(tuple));
-
+            
         }  else {
        DBObject object=(DBObject) tuple.getValueByField("document");
        String listId=(String)object.get("lid");
