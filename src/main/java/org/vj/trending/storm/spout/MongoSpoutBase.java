@@ -23,14 +23,24 @@ import backtype.storm.tuple.Fields;
 import com.mongodb.DBObject;
 
 public abstract class MongoSpoutBase extends BaseRichSpout {
-  static Logger LOG = Logger.getLogger(org.vj.trending.storm.spout.MongoSpoutBase.class);
+  /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+static Logger LOG = Logger.getLogger(org.vj.trending.storm.spout.MongoSpoutBase.class);
 
   protected static MongoObjectGrabber wholeDocumentMapper = null;
 
   // Hard coded static mapper for whole document map
   static {
     wholeDocumentMapper = new MongoObjectGrabber() {
-      @Override
+      /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
+    @Override
       public List<Object> map(DBObject object) {
         List<Object> tuple = new ArrayList<Object>();
         tuple.add(object);
