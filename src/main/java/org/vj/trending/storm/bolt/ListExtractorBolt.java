@@ -41,16 +41,13 @@ public class ListExtractorBolt extends BaseRichBolt
     @Override
     public void execute(Tuple tuple)
     {
-        LOG.info("1.Tuple:" + tuple);
         if (TupleHelpers.isTickTuple(tuple))
         {
-            LOG.info("2.Inside the Tick");
             outputCollector.emit(new Values(tuple));
 
         }
         else
         {
-            LOG.info("2.Tuple:" + tuple);
             DBObject object = null;
             try
             {
